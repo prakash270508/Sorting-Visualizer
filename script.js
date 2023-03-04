@@ -1,5 +1,6 @@
 const arrBtn = document.getElementById("arrBtn");
 const bblSort = document.getElementById("bblSort");
+const selectionSort = document.getElementById("selectionSort");
 const main = document.getElementById("main");
 let bars = [];
 
@@ -15,7 +16,7 @@ arrBtn.addEventListener("click", () => {
   }
 });
 
-function swap(a, b) {
+function swap(a, b) { 
   return new Promise((resolve) => {
     setTimeout(() => {
       let temp = bars[a];
@@ -39,4 +40,17 @@ bblSort.addEventListener('click' , async function(){
           }
         }
       }
+})
+
+
+selectionSort.addEventListener('click' , async function(){
+  for (let i = 0; i < bars.length; i++) {
+    let midIndex = i
+      for (let j = 0; j < bars.length; j++) {
+        if (bars[j] > bars[midIndex]) {
+          midIndex = j
+        }
+        await swap(midIndex, i)
+      }
+    }
 })
